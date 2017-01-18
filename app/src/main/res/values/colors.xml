@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="hei">#000000</color>
     <color name="bai">#ffffff</color>
+    <color name="hui">#efefef</color>
+    <color name="hui_hei">#4f4f4f</color>
 </resources>

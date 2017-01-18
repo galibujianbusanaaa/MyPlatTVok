@@ -10,6 +10,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ import org.xutils.x;
 
 import myapplication.com.myplattvok.R;
 import myapplication.com.myplattvok.bean.Bean;
+import myapplication.com.myplattvok.bean.Info;
+import myapplication.com.myplattvok.bean.InfoDao;
 import myapplication.com.myplattvok.utils.JsonParseUtlis;
 
 public class Detail_Activity extends AppCompatActivity {
@@ -35,24 +39,48 @@ public class Detail_Activity extends AppCompatActivity {
     ImageView image;
     Bean bean;
     TextView url_0,url_1,url_2,url_3,url_4,url_5;
+    InfoDao infoDao=new InfoDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /***
+         * 设置返回键和菜单键可见可用
+         * */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /**
+                 * 收藏数据
+                 * */
+                boolean shouchang_key=infoDao.query(id);
+                if(!shouchang_key){
+                    if(bean!=null){
+                        infoDao.insert(new Info(bean.getTitle(),id,bean.getPlayer()));
+                        Snackbar.make(view, "收藏成功!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }else{
+                        Snackbar.make(view, "收藏失败!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }else {
+                    Snackbar.make(view, "已经收藏过了!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+
+
             }
         });
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
-        name=intent.getStringExtra("name");
+       // name=intent.getStringExtra("name");
         textView_title= (TextView) findViewById(R.id.title);
         textView_id= (TextView) findViewById(R.id.id);
         textView_player= (TextView) findViewById(R.id.player);
@@ -79,7 +107,7 @@ public class Detail_Activity extends AppCompatActivity {
         public void onSuccess(String result) {
             try {
 
-                System.out.println("**xiangqing"+result);
+
                 bean= JsonParseUtlis.Jsonforbean(result);
                 textView_id.setText(""+bean.getTitle());
                 textView_player.setText("编号:"+bean.getId());
@@ -172,7 +200,41 @@ public class Detail_Activity extends AppCompatActivity {
         startActivity(intent2);
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_detail_, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        /**
+         *
+         * 菜单set事件
+         * */
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(),"setting1",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        /**
+         * 返回键事件
+         * */
+        if(id==android.R.id.home){
+
+            Detail_Activity.this.finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
     /**

@@ -24,6 +24,7 @@ import java.util.List;
 
 import myapplication.com.myplattvok.adapter.ListAdapter;
 import myapplication.com.myplattvok.avtivity.Detail_Activity;
+import myapplication.com.myplattvok.avtivity.Shoucang_Activity;
 import myapplication.com.myplattvok.bean.Constant;
 import myapplication.com.myplattvok.bean.ListBean;
 import myapplication.com.myplattvok.utils.JsonParseUtlis;
@@ -45,7 +46,10 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                RequestParams requestParams = new RequestParams(Constant.HOME_URL);
+                requestParams.setAsJsonContent(true);
+                x.http().get(requestParams,new A());
+                Snackbar.make(view, "重新加载数据中……", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -102,6 +106,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent intent=new Intent(MainActivity.this, Shoucang_Activity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -134,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                 String name_palyer=bean.getPlayer();
                 Intent intent = new Intent(MainActivity.this, Detail_Activity.class);
                 intent.putExtra("id",id_player);
-                intent.putExtra("name",name_palyer);
+              //  intent.putExtra("name",name_palyer);
                 startActivity(intent);
             }
         });
