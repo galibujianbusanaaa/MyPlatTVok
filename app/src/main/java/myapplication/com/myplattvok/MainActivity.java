@@ -1,9 +1,12 @@
 package myapplication.com.myplattvok;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,7 +18,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -24,6 +30,7 @@ import java.util.List;
 
 import myapplication.com.myplattvok.adapter.ListAdapter;
 import myapplication.com.myplattvok.avtivity.Detail_Activity;
+import myapplication.com.myplattvok.avtivity.Search_Activity;
 import myapplication.com.myplattvok.avtivity.Shoucang_Activity;
 import myapplication.com.myplattvok.bean.Constant;
 import myapplication.com.myplattvok.bean.ListBean;
@@ -105,13 +112,46 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
             Intent intent=new Intent(MainActivity.this, Shoucang_Activity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_gallery) {
+            /**
+             *搜索功能
+             * */
+            AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
+            localBuilder.setTitle("搜索框").setIcon(R.mipmap.search);
+           final View view=getLayoutInflater().inflate(R.layout.search_alert_layout, null);
+            localBuilder.setView(view);
+            localBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+            {
+                public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+                {
+                    EditText editText= (EditText) view.findViewById(R.id.edit_search);
+                    if(TextUtils.isEmpty(editText.getText().toString().toString())){
+                        Toast.makeText(MainActivity.this, "演员不能为空!", Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        Intent intent=new Intent(MainActivity.this, Search_Activity.class);
+                        intent.putExtra("player",editText.getText().toString().trim());
+                        startActivity(intent);
+
+                    }
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener()
+            {
+                public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+                {
+                }
+            }).create().show();
 
         } else if (id == R.id.nav_slideshow) {
+            /**
+             * 欧美分类
+             * */
+            Intent intent=new Intent(MainActivity.this, Search_Activity.class);
+            intent.putExtra("player","欧美");
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

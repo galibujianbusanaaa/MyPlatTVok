@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -220,7 +221,27 @@ public class Detail_Activity extends AppCompatActivity {
          * */
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(getApplicationContext(),"setting1",Toast.LENGTH_SHORT).show();
+
+            if(bean==null){
+                Toast.makeText(getApplicationContext(),"搜索失败,请重试!",Toast.LENGTH_SHORT).show();
+            }else{
+
+                Intent intent=new Intent(Detail_Activity.this,Search_Activity.class);
+                intent.putExtra("player",bean.getPlayer());
+                if(bean.getPlayer().length()>50){
+                    String player=bean.getPlayer().substring(0,14);
+                    intent.putExtra("player",player);
+                    startActivity(intent);
+                }
+                if(!TextUtils.isEmpty(bean.getPlayer().toString())&bean.getPlayer().length()<50){
+
+                    String player=bean.getPlayer();
+                    intent.putExtra("player",player);
+                    startActivity(intent);
+                }
+            }
+
+
             return true;
         }
 

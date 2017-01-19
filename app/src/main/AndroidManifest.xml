@@ -3,7 +3,7 @@
     package="myapplication.com.myplattvok">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -25,8 +25,10 @@
             android:name=".avtivity.Detail_Activity"
             android:label="@string/title_activity_detail_"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".avtivity.Shoucang_Activity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".avtivity.Shoucang_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".avtivity.Search_Activity" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

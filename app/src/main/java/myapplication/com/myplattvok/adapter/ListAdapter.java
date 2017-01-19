@@ -73,8 +73,19 @@ public class ListAdapter extends BaseAdapter {
 
         }
         holder.textView1.setText(""+title);
-        holder.textView2.setText("演员："+player);
-        holder.textView3.setText("类型:"+category);
+        if(!TextUtils.isEmpty(player)){
+            holder.textView2.setText("演员："+player);
+        }else {
+            holder.textView2.setText("");
+
+        }
+        if(!TextUtils.isEmpty(category)){
+            holder.textView3.setText("类型:"+category);
+        }else {
+            holder.textView3.setText("");
+        }
+
+
         holder.textView4.setText("更新时间:"+up_time);
      System.out.println("***"+title);
 
