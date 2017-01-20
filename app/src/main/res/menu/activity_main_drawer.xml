@@ -12,24 +12,24 @@
             android:title="搜索" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="欧美视频" />
+            android:icon="@mipmap/ozhou"
+            android:title="欧美" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:icon="@mipmap/china"
+            android:title="国产" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:icon="@mipmap/fenxiang"
+                android:title="分享" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:icon="@mipmap/about"
+                android:title="关于" />
         </menu>
     </item>
 

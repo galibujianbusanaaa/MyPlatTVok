@@ -28,7 +28,11 @@
         <activity
             android:name=".avtivity.Shoucang_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".avtivity.Search_Activity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".avtivity.Search_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".avtivity.Aboutme_Activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

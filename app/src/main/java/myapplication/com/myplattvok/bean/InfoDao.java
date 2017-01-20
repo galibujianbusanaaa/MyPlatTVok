@@ -2,6 +2,7 @@ package myapplication.com.myplattvok.bean;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class InfoDao {
 
         db.execSQL("delete from shouchang where id = " + id);
         db.close();
+
     }
 
     public List<Info> findAll() {

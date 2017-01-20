@@ -17,24 +17,24 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        zhy:src="@mipmap/log"
+        zhy:src="@mipmap/detail"
         zhy:type="circle" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:text="gali_PlayTV "
         android:layout_marginLeft="20dp"
-        android:textColor="@color/colorAccent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:paddingTop="5dp"
+        android:text="galiplayer "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="23dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="4dp"
+        android:text=""/>
 
 </LinearLayout>

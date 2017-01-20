@@ -54,7 +54,7 @@ public class Search_Activity extends AppCompatActivity {
                 ListAdapter myadapter=new ListAdapter(datas,getApplicationContext(),Search_Activity.this);
                 listView.setAdapter(myadapter);
                 if(datas.size()!=0){
-                    Toast.makeText(getApplicationContext(),"搜索到"+datas.size()+"条数据",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"搜索到"+datas.size()+"条数据",Toast.LENGTH_SHORT).show();
 
                 }else if(datas.size()==0){
                     Toast.makeText(getApplicationContext(),"坑！没有搜索到,再试试！",Toast.LENGTH_SHORT).show();

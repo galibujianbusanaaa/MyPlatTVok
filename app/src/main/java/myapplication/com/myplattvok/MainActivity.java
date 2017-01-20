@@ -29,6 +29,7 @@ import org.xutils.x;
 import java.util.List;
 
 import myapplication.com.myplattvok.adapter.ListAdapter;
+import myapplication.com.myplattvok.avtivity.Aboutme_Activity;
 import myapplication.com.myplattvok.avtivity.Detail_Activity;
 import myapplication.com.myplattvok.avtivity.Search_Activity;
 import myapplication.com.myplattvok.avtivity.Shoucang_Activity;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
+    String tag="galitv";
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_seted) {
+
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -155,9 +161,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
+            Intent intent=new Intent(MainActivity.this, Search_Activity.class);
+            intent.putExtra("player","國產");
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
-
+            Toast.makeText(getApplicationContext(),"不可分享!",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
+            Intent intent=new Intent(MainActivity.this, Aboutme_Activity.class);
+            startActivity(intent);
 
         }
 
